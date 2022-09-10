@@ -1,0 +1,18 @@
+version: "3.9"
+   
+services:
+  web:
+    build: .
+    command:    
+      - /bin/sh
+      - -c
+      - |
+        pytest;
+        uvicorn main:app --host 0.0.0.0 --reload;
+
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    # depends_on:
+    #   - db
